@@ -1,0 +1,42 @@
+class Solution {
+public:
+    string stringShift(string s1, vector<vector<int>>& shift) {
+        string s=s1;
+        int sc=0;
+        for(int i=0;i<shift.size();i++){
+            if(shift[i][0]==0){
+                sc-=shift[i][1];
+            }
+            else{
+                sc+=shift[i][1];
+            }
+        }
+    
+        
+        if(sc<0){
+            //lft
+            sc*=-1;
+            sc=sc%s.size();
+        
+            if(sc!=0){
+            string f=s1.substr(0,sc);
+            s.erase(0,sc);
+            s+=f;
+            }
+            
+        }else{
+            // cout<<"+"<<sc;    
+            sc=sc%s.size();
+            // cout<<"+"<<sc;    
+            if(sc!=0)
+            {string f=s1.substr(0,s.size()-sc);
+            cout<<f;
+             s.erase(0,s.size()-sc);
+             s+=f;
+            }
+            
+        }
+                    
+    return s;
+    }
+};

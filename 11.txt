@@ -1,0 +1,38 @@
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    int ans,sum;
+    int h(TreeNode* root){
+        if(!root)return 0;
+        int lh=h(root->left);
+        int rh=h(root->right);
+        if(ans<lh+rh+1){
+            cout<<root->val<<" ";
+            sum+=(root->val);
+        }
+        ans=max(ans,lh+rh+1);
+        return 1+max(lh,rh); 
+    }
+    int diameterOfBinaryTree(TreeNode* root) {
+        if(!root)return 0;
+        ans=1;sum=0;
+        //int lh=h(root->left);
+        //int rh=h(root->right);
+        //int ld=diameterOfBinaryTree(root->left);
+        //int rd=diameterOfBinaryTree(root->right);
+        //int fd=max((lh+rh),max(ld,rd));
+        //return fd;
+        int hi=h(root);
+        // cout<<sum<<endl;
+        return ans-1;
+        
+    }
+};

@@ -1,0 +1,22 @@
+class Solution {
+public:
+    
+    int findMaxLength(vector<int>& nums) {
+        int sum=0;
+        unordered_map<int,int> m;
+        int longs= 0;
+       
+        for(int i=0;i<nums.size();i++){
+            sum += (nums[i]==0)?-1:1;
+           
+            if(sum == 0)
+                longs = max(i+1,longs);
+            else if(m.contain(sum))
+                longs = max(i-m[sum],longs);
+            else
+                m[sum] = i;
+       }
+        return longs;
+    
+    }
+};
